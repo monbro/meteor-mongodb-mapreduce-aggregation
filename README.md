@@ -10,24 +10,24 @@ Unfortunately the original source was not working for me anymore as a plugin and
 
 It extends `Collection` with 3 methods so far, **mapReduce**, **distinct** and **aggregate**, so that you can do:
 
-```coffeescript
-    col = new Meteor.Collection "name"
+```javascript
+    const col = new Meteor.Collection("name");
 
-    if Meteor.isServer
-        # mapReduce
-        map = function() {emit(this.Region, this.Amount);}
-        reduce = function(reg, am) { return Array.sum(am);};
+    if (Meteor.isServer) {
+      // mapReduce
+      const map = () => emit(this.Region, this.Amount);
+      const reduce = (reg, am) => Array.sum(am);
 
-        col.mapReduce map, reduce, {out: "out_collection_name", verbose: true}, (err,res)->
-            console.dir res.stats # statistics object for running mapReduce
+      col.mapReduce(map, reduce, {out: "out_collection_name", verbose: true}, (err, res) => console.dir(res.stats)); // statistics object for running mapReduce
 
-        # distinct
-        result = col.distinct "Field Name"
-        console.dir result
+      // distinct
+      let result = col.distinct("Field Name");
+      console.dir(result);
 
-        #aggregate
-        result = col.aggregate pipeline
-        console.dir result
+      //aggregate
+      result = col.aggregate(pipeline);
+      console.dir(result);
+    }
 ```
 
 Another [mapReduce](http://docs.mongodb.org/manual/core/map-reduce/) example in javascript:

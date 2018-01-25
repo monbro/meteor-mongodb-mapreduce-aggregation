@@ -5,11 +5,10 @@ Package.describe({
     git: 'https://github.com/monbro/meteor-mongodb-mapreduce-aggregation'
 });
 
-// Npm.depends({mongodb: "1.3.17"});
 function configurePackage(api) {
 
   if(api.versionsFrom) {
-    api.versionsFrom('METEOR@1.0.1');
+    api.versionsFrom('METEOR@1.6.1');
   }
 
   // Core Dependencies
@@ -19,10 +18,7 @@ function configurePackage(api) {
     ]
   );
 
-  api.use('coffeescript', 'server');
-  api.use('underscore', 'server');
-
-  api.addFiles('server.coffee', 'server');
+  api.addFiles('server.js', 'server');
 }
 
 Package.onUse(function(api) {
